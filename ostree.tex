@@ -14,8 +14,64 @@
   \frametitle{\insertsubsection}
 
     \begin{itemize}
-    \item foo bar
-    \item bar
-    \item baz
+      \item Not a package system (it's actually a library)\vspacing
+      \item Git-like system for complete, bootable filesystems\vspacing
+      \item Suitable for large binaries: hard links, de-duplication\vspacing
+      \item Advantages for embedded devices (network and disk efficiency, atomicity...)\vspacing
+    \end{itemize}
+\end{frame}
+
+\subsection{Atomic \& incremental upgrades}
+\begin{frame}
+  \frametitle{\insertsubsection}
+
+    \begin{itemize}
+      \item Git-like fetching via HTTP\vspacing
+      \item Automatic creation of new deployments\vspacing
+      \item Automatic swapping of boot configurations\vspacing
+      \item Static deltas\vspacing
+    \end{itemize}
+\end{frame}
+
+\subsection{Comparison with other systems}
+\begin{frame}
+  \frametitle{\insertsubsection}
+
+    \begin{itemize}
+      \item OSTree vs APT/RPM\vspacing
+      \item OSTree vs image replication (flashing)\vspacing
+      \item OSTree vs ChromiumOS updater\vspacing
+    \end{itemize}
+\end{frame}
+
+\subsection{Anatomy of an OSTree repository}
+\begin{frame}
+  \frametitle{\insertsubsection}
+
+    \begin{itemize}
+      \item Types of repositories\vspacing
+      \item Objects (commits, dirtree, dirmeta, content) + refs\vspacing
+      \item The summary file\vspacing
+    \end{itemize}
+\end{frame}
+
+\subsection{OSTree deployments}
+\begin{frame}
+  \frametitle{\insertsubsection}
+
+    \begin{itemize}
+      \item Multiple deployments per OS, parallel installable\vspacing
+      \item Shared stateful data among deployments (/etc, /var)\vspacing
+    \end{itemize}
+\end{frame}
+
+\subsection{Who is using OSTree?}
+\begin{frame}
+  \frametitle{\insertsubsection}
+
+    \begin{itemize}
+      \item Atomic project (Fedora, CentOS)\vspacing
+      \item GNOME Continuous\vspacing
+      \item Endless OS\vspacing
     \end{itemize}
 \end{frame}
