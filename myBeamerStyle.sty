@@ -7,6 +7,8 @@
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{xspace}
+\usepackage[]{tikz}
+\usepackage[export]{adjustbox}
 
 %%                                    %%
 %% Paquetes utilizados                %%
@@ -85,5 +87,39 @@
 \newenvironment{ejemplo}{\begin{multicols}{2}}{\end{multicols}}
 \newenvironment{caja}[1]{\begin{beamerboxesrounded}[shadow=true]{#1}}
                         {\end{beamerboxesrounded}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Full screen images %
+%%%%%%%%%%%%%%%%%%%%%%
+\def\resizeimagetofitpage#1{%
+  \adjustbox{max size={0.99\paperwidth}{0.99\paperheight}, clip=true}%
+  {\includegraphics[max size={0.99\paperwidth}{0.99\paperheight}]{#1}}%
+}
+
+\newenvironment{backimage}[1]
+{   %
+  % Image HAS to be wider than taller.
+  % 
+  \usebackgroundtemplate{%
+    \begin{tikzpicture}
+      \draw[fill=white] (0,0) rectangle (\paperwidth, \paperheight);
+      \node[anchor=center, inner sep=0pt, rectangle]
+      at (.5\paperwidth,.5\paperheight)
+      {\makebox[0pt]{\resizeimagetofitpage{#1}}};
+    \end{tikzpicture}
+  }
+}{}
+
+\newcommand{\fsslide}[1]{
+{
+  \thispagestyle{empty}
+
+  \begin{backimage}{#1}
+    \begin{frame}
+    \end{frame}
+  \end{backimage}
+}
+}
 
 \endinput
