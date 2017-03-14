@@ -425,7 +425,7 @@ USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
       \item Allows using unencrypted HTTP (faster downloads)\vspacing
       \item Recommended to create a dedicated GPG key\vspacing
       \end{itemize}
-    \item Pushing to a production public repository: e.g. \texttt{rsync}
+    \item Push to a production public repository: e.g. \texttt{rsync}
       \begin{itemize}
       \item Simple requirements: static files served over HTTP!\vspacing
       \item Push it to your public server once you're happy\vspacing
@@ -462,7 +462,7 @@ USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 \begin{frame}[fragile]
   \frametitle{\insertsubsection}
 
-  \textbf{Configuring flatpak ``repositories''}: \texttt{.flatpakrepo} files
+  \textbf{Configuring flatpak ``repositories''}: \texttt{gnome.flatpakrepo}
   \begin{tiny}
 \begin{verbatim}
 [Flatpak Repo]
@@ -478,7 +478,7 @@ GPGKey=mQENBFUU[...]15w8jmY=
 \end{verbatim}
   \end{tiny}
 
-  \textbf{Installing application in one step}: \texttt{.flatpakref} files
+  \textbf{Installing an application}: \texttt{gnome-recipes.flatpakref}
   \begin{tiny}
 \begin{verbatim}
 [Flatpak Ref]
