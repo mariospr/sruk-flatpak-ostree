@@ -13,56 +13,81 @@
 \begin{frame}
   \frametitle{\insertsubsection}
 
-    \begin{itemize}
-      \item Not a package system (it's actually a library)\vspacing
-      \item Git-like system for complete, bootable filesystems\vspacing
-      \item Suitable for large binaries: hard links, de-duplication\vspacing
-      \item Advantages for embedded devices (network and disk efficiency, atomicity...)\vspacing
-    \end{itemize}
+  \begin{itemize}
+  \item Git-like system for complete a\& bootable filesystems\vspacing
+  \item Disk efficient: de-duplication via SHA256SUM hashes, check outs files from the object store via hard links\vspacing
+  \item Network efficient: static deltas, summary file\vspacing
+  \item Reliable updates \& rollback: atomicity, no inconsistencies\vspacing
+  \item Safe: GPG verification for commits and summary file\vspacing
+  \item Introspectable library and command line tools
+  \end{itemize}
+
+  \begin{flushleft}
+    \textbf{Multiple use cases}: OS deployment, efficient OTA updates, continuous integration \& QA, bundled applications...
+  \end{flushleft}
 \end{frame}
 
 \subsection{Atomic \& incremental upgrades}
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{\insertsubsection}
 
     \begin{itemize}
-      \item Git-like fetching via HTTP\vspacing
-      \item Automatic creation of new deployments\vspacing
-      \item Automatic swapping of boot configurations\vspacing
-      \item Static deltas\vspacing
+    \item Git-like fetching via HTTP: simple setup\vspacing
+    \item Incremental downloads of objects, using pre-generated static deltas when available\vspacing
+    \item Automatic verification of fecthed objects and deltas\vspacing
+    \item Automatic creation of new deployments (+ 3-way merge)\vspacing
+    \item Atomic swapping of boot configurations via symlinks
     \end{itemize}
+
+    \begin{tiny}
+\begin{verbatim}
+        $ ls -l /ostree/
+        total 12K
+        lrwxrwxrwx 1 root root    8 Oct  4 16:55 boot.0 -> boot.0.1
+        drwxr-xr-x 3 root root 4.0K Oct  4 16:55 boot.0.1
+        drwxr-xr-x 3 root root 4.0K Oct  4 16:55 deploy
+        drwxr-xr-x 7 root root 4.0K Mar 12 12:59 repo
+\end{verbatim}
+  \end{tiny}
+
+\end{frame}
+
+\subsection{Some internal details}
+\begin{frame}
+  \frametitle{\insertsubsection}
+
+  \textbf{Anatomy of an OSTree repository}:
+  \begin{itemize}
+  \item Types of repositories: bare, bare-user, archive-z2\vspacing
+  \item Objects (commits, dirtree, dirmeta, content) + refs\vspacing
+  \item The summary file\vspacing
+  \end{itemize}
+
+  \textbf{OSTree deployments}:
+  \begin{itemize}
+  \item Multiple deployments per OS, parallel installable\vspacing
+  \item Shared stateful data among deployments (/etc, /var)
+  \end{itemize}
 \end{frame}
 
 \subsection{Comparison with other systems}
 \begin{frame}
   \frametitle{\insertsubsection}
 
-    \begin{itemize}
-      \item OSTree vs APT/RPM\vspacing
-      \item OSTree vs image replication (flashing)\vspacing
-      \item OSTree vs ChromiumOS updater\vspacing
-    \end{itemize}
-\end{frame}
+  \textbf{OSTree vs APT/RPM}
+  \begin{itemize}
+  \item Deploying full filesystem VS partial ones\vspacing
+  \item Truly atomic VS potentially broken intermediate stages\vspacing
+  \item No dependencies hell, no postinst/postrm hooks...\vspacing
+  \end{itemize}
 
-\subsection{Anatomy of an OSTree repository}
-\begin{frame}
-  \frametitle{\insertsubsection}
-
-    \begin{itemize}
-      \item Types of repositories\vspacing
-      \item Objects (commits, dirtree, dirmeta, content) + refs\vspacing
-      \item The summary file\vspacing
-    \end{itemize}
-\end{frame}
-
-\subsection{OSTree deployments}
-\begin{frame}
-  \frametitle{\insertsubsection}
-
-    \begin{itemize}
-      \item Multiple deployments per OS, parallel installable\vspacing
-      \item Shared stateful data among deployments (/etc, /var)\vspacing
-    \end{itemize}
+  \textbf{OSTree vs image replication (flashing)}
+  \begin{itemize}
+  \item Predictable like flashing, but much more efficient\vspacing
+  \item Only 2 persistent directories supported: /etc \& /var\vspacing
+  \item Works on top of any filesystems supporting hard links\vspacing
+  \item Supports installing different versions of the OS in parallel
+  \end{itemize}
 \end{frame}
 
 \subsection{Who is using OSTree?}
@@ -72,6 +97,8 @@
     \begin{itemize}
       \item Atomic project (Fedora, CentOS)\vspacing
       \item GNOME Continuous\vspacing
+      \item Automotive Grade Linux (AGL)\vspacing
       \item Endless OS\vspacing
+      \item Flatpak
     \end{itemize}
 \end{frame}
