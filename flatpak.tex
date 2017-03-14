@@ -214,6 +214,28 @@ USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
     \end{tiny}
 \end{frame}
 
+\subsection{Platform and SDK Runtimes}
+\begin{frame}
+  \frametitle{\insertsubsection}
+
+  Currently \textbf{two main standard runtimes} available:
+  \begin{itemize}
+  \item Freedesktop runtime: containes a set of essential libraries and services: D-Bus, GLib, PulseAudio, X11, Wayland\vspacing
+  \item GNOME runtime: based on the Freedesktop runtime, adds libraries like GTK+, GStreamer or GVFS on top.
+  \end{itemize}
+
+  \begin{center}
+    A KDE runtime is currently under development too:\\
+    \small{\url{https://github.com/KDE/flatpak-kde-runtime}}\\\vspacing
+  \end{center}
+
+  Two \textbf{types of runtimes}:
+  \begin{itemize}
+    \item Platform runtime: just the bits needed to \textbf{run} apps\vspacing
+    \item SDK runtime: platform + the necessary tools and files for development purposes (e.g. headers, debug symbols...)\vspacing
+    \end{itemize}
+\end{frame}
+
 \subsection{The Sandbox}
 \begin{frame}
   \frametitle{\insertsubsection}
