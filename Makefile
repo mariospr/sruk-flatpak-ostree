@@ -1,7 +1,11 @@
 doc=20170316-SRUK-Flatpak-OSTree
 SHELL=/bin/bash
 
-default:pdfdirect
+default: redhat_logo.pdf pdfdirect
+
+redhat_logo.pdf:
+	wget -c https://upload.wikimedia.org/wikipedia/en/6/6c/RedHat.svg
+	rsvg-convert -f pdf -o redhat_logo.pdf RedHat.svg
 
 dvi:
 	latex $(doc).tex;
@@ -18,6 +22,7 @@ pdfdirect:
 
 clean:
 	rm -f *.{out,aux,toc,log,bbl,blg,bak,snm,nav} *\~
+	rm -f redhat_logo.pdf RedHat.svg
 
 mrproper: clean
 	rm -f *.{ps,dvi,pdf,vrb}

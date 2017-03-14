@@ -1,0 +1,27 @@
+- About me
+- GNOME PackageKit, conflicts
+- Started 2012, Canonical, Endless, Suse, Red Hat all use (rebranded?)
+- Designed, rather than evolved
+- Small development team (hackfest?)
+- AppStream and AppData
+- AppData as a source format
+- AppStream in the distro = packages
+- AppStream in flatpak
+- AppStream overrides
+- Plugin Architecure
+- GTK-DOC
+- Allows vendor crazy
+- ODRS
+- Firmware
+- UEFI firmware
+- DFU device firmware
+- LVFS screenshot
+- Distro upgrades
+- offline-update
+- ostree atomic
+- Flatpak
+- Uses AppStream
+- User and system installations
+- Runtimes
+- System installations on different media
+- Automatically update in the future safely and securely
