@@ -16,9 +16,9 @@
     \begin{itemize}
     \item A new way of distributing applications in Linux\vspacing
     \item Sits on top of OSTree and \textit{bubblewrap} (chroot on steroids)\vspacing
-    \item Allows having both user and system-wide installations\vspacing
     \item Cross-platform by design: \textbf{runtimes} and \textbf{applications}\vspacing
     \item Reliable and secure: GPG signatures, sanboxing, portals...\vspacing
+    \item Allows having both user and system-wide installations\vspacing
     \item Open Source project. Started by Red Hat, contributions from Endless, Collabora, Codethink, Intel, Kinvolk, Solus...
     \end{itemize}
 
@@ -26,6 +26,10 @@
       Similar in some ways to Docker, but with the focus on end user
       applications instead of for containerized system-wide services.
     \end{flushleft}
+
+  \begin{center}
+    \url{http://flatpak.org}
+  \end{center}
 \end{frame}
 
 \subsection{A brief note on bubblewrap}
@@ -92,39 +96,39 @@ USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 
     \begin{tiny}
 \begin{verbatim}
-           $ tree -L 3 /var/lib/flatpak/runtime/org.gnome.Platform/x86_64/3.22/active/
-           |-- deploy
-           |-- files
-           | |-- bin
-           | | |-- [...]
-           | | |-- basename
-           | | |-- bash
-           | | |-- [...]
-           | |-- etc
-           | | |-- [...]
-           | | |-- ca-certificates.conf
-           | | |-- dbus-1
-           | | |-- [...]
-           | |-- lib
-           | | |-- [...]
-           | | |-- libglib-2.0.so.0.5000.2
-           | | |-- libGL.so -> libGL.so.1.0.0
-           | | |-- [...]
-           | |-- lib64
-           | | `-- ld-linux-x86-64.so.2 -> /usr/lib/ld-linux-x86-64.so.2
-           | |-- [...]
-           | |-- manifest-base-1.json
-           | |-- manifest.json
-           | |-- sbin -> bin
-           | |-- share
-           | | |-- [...]
-           | | |-- applications
-           | | |-- [...]
-           | `-- var
-           |     |-- cache
-           |     |-- lib
-           |     `-- run
-           `-- metadata
+       $ tree -L 3 /var/lib/flatpak/runtime/org.gnome.Platform/x86_64/3.22/active/
+       |-- deploy
+       |-- files
+       | |-- bin
+       | | |-- [...]
+       | | |-- basename
+       | | |-- bash
+       | | |-- [...]
+       | |-- etc
+       | | |-- [...]
+       | | |-- ca-certificates.conf
+       | | |-- dbus-1
+       | | |-- [...]
+       | |-- lib
+       | | |-- [...]
+       | | |-- libglib-2.0.so.0.5000.2
+       | | |-- libGL.so -> libGL.so.1.0.0
+       | | |-- [...]
+       | |-- lib64
+       | | `-- ld-linux-x86-64.so.2 -> /usr/lib/ld-linux-x86-64.so.2
+       | |-- [...]
+       | |-- manifest-base-1.json
+       | |-- manifest.json
+       | |-- sbin -> bin
+       | |-- share
+       | | |-- [...]
+       | | |-- applications
+       | | |-- [...]
+       | `-- var
+       |     |-- cache
+       |     |-- lib
+       |     `-- run
+       `-- metadata
 \end{verbatim}
     \end{tiny}
 \end{frame}
@@ -135,44 +139,44 @@ USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 
     \begin{tiny}
 \begin{verbatim}
-           $ tree -L 3 /var/lib/flatpak/app/org.gnome.Todo/current/active/
-           /var/lib/flatpak/app/org.gnome.Todo/current/active/
-           |-- deploy
-           |-- export
-           |   `-- share
-           |       |-- applications
-           |       |-- dbus-1
-           |       `-- icons
-           |-- files
-           |   |-- bin
-           |   |   `-- gnome-todo
-           |   |-- lib
-           |   |   |-- debug
-           |   |   |-- evolution-data-server
-           |   |   |-- girepository-1.0
-           |   |   |-- gnome-todo
-           |   |   |-- goa-1.0
-           |   |   |-- libcamel-1.2.so -> libcamel-1.2.so.59.0.0
-           |   |   |-- [...]
-           |   |   `-- systemd
-           |   |-- manifest.json
-           |   `-- share
-           |       |-- appdata
-           |       |-- applications
-           |       |-- dbus-1
-           |       |-- GConf
-           |       |-- gir-1.0
-           |       |-- glib-2.0
-           |       |-- icons
-           |       |-- locale
-           |       |-- pixmaps
-           |       `-- runtime
-           `-- metadata
+       $ tree -L 3 /var/lib/flatpak/app/org.gnome.Todo/current/active/
+       /var/lib/flatpak/app/org.gnome.Todo/current/active/
+       |-- deploy
+       |-- export
+       |   `-- share
+       |       |-- applications
+       |       |-- dbus-1
+       |       `-- icons
+       |-- files
+       |   |-- bin
+       |   |   `-- gnome-todo
+       |   |-- lib
+       |   |   |-- debug
+       |   |   |-- evolution-data-server
+       |   |   |-- girepository-1.0
+       |   |   |-- gnome-todo
+       |   |   |-- goa-1.0
+       |   |   |-- libcamel-1.2.so -> libcamel-1.2.so.59.0.0
+       |   |   |-- [...]
+       |   |   `-- systemd
+       |   |-- manifest.json
+       |   `-- share
+       |       |-- appdata
+       |       |-- applications
+       |       |-- dbus-1
+       |       |-- GConf
+       |       |-- gir-1.0
+       |       |-- glib-2.0
+       |       |-- icons
+       |       |-- locale
+       |       |-- pixmaps
+       |       `-- runtime
+       `-- metadata
 \end{verbatim}
     \end{tiny}
 \end{frame}
 
-\subsection{Putting all together: running a flatpak app}
+\subsection{Putting all together: inside a running flatpak app}
 \begin{frame}[fragile]
   \frametitle{\insertsubsection}
 
@@ -218,9 +222,15 @@ USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 \begin{frame}
   \frametitle{\insertsubsection}
 
+  Two \textbf{types of runtimes}:
+  \begin{itemize}
+    \item Platform runtime: just the bits needed to \textbf{run} apps\vspacing
+    \item SDK runtime: platform + the necessary tools and files for development purposes (e.g. headers, debug symbols...)\vspacing
+    \end{itemize}
+
   Currently \textbf{two main standard runtimes} available:
   \begin{itemize}
-  \item Freedesktop runtime: containes a set of essential libraries and services: D-Bus, GLib, PulseAudio, X11, Wayland\vspacing
+  \item Freedesktop runtime: contains a set of essential libraries and services: D-Bus, GLib, PulseAudio, X11, Wayland\vspacing
   \item GNOME runtime: based on the Freedesktop runtime, adds libraries like GTK+, GStreamer or GVFS on top.
   \end{itemize}
 
@@ -228,12 +238,6 @@ USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
     A KDE runtime is currently under development too:\\
     \small{\url{https://github.com/KDE/flatpak-kde-runtime}}\\\vspacing
   \end{center}
-
-  Two \textbf{types of runtimes}:
-  \begin{itemize}
-    \item Platform runtime: just the bits needed to \textbf{run} apps\vspacing
-    \item SDK runtime: platform + the necessary tools and files for development purposes (e.g. headers, debug symbols...)\vspacing
-    \end{itemize}
 \end{frame}
 
 \subsection{The Sandbox}
@@ -282,29 +286,29 @@ USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
   A Flatpak manifest file (\texttt{metadata}):
     \begin{tiny}
 \begin{verbatim}
-           [Application]
-           name=org.gnome.Calculator
-           runtime=org.gnome.Platform/x86_64/3.20
-           sdk=org.gnome.Sdk/x86_64/3.20
-           command=gnome-calculator
+       [Application]
+       name=org.gnome.Calculator
+       runtime=org.gnome.Platform/x86_64/3.20
+       sdk=org.gnome.Sdk/x86_64/3.20
+       command=gnome-calculator
 
-           [Context]
-           shared=network;ipc;
-           sockets=x11;wayland;
-           filesystems=xdg-run/dconf;~/.config/dconf:ro;
+       [Context]
+       shared=network;ipc;
+       sockets=x11;wayland;
+       filesystems=xdg-run/dconf;~/.config/dconf:ro;
 
-           [Session Bus Policy]
-           ca.desrt.dconf=talk
+       [Session Bus Policy]
+       ca.desrt.dconf=talk
 
-           [Environment]
-           DCONF_USER_CONFIG_DIR=.config/dconf
+       [Environment]
+       DCONF_USER_CONFIG_DIR=.config/dconf
 
-           [Extension org.gnome.Calculator.Locale]
-           directory=share/runtime/locale
-           subdirectories=true
+       [Extension org.gnome.Calculator.Locale]
+       directory=share/runtime/locale
+       subdirectories=true
 
-           [Extension org.gnome.Calculator.Debug]
-           directory=lib/debug
+       [Extension org.gnome.Calculator.Debug]
+       directory=lib/debug
 \end{verbatim}
     \end{tiny}
 \end{frame}
@@ -315,7 +319,7 @@ USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 
   \begin{itemize}
   \item High-level APIs to allow sandboxed apps request access\vspacing
-  \item Out-of-process services, run in the host system\vspacing
+  \item Out-of-process services running on the host system\vspacing
   \item Sandboxed apps communicate via D-Bus\vspacing
   \item Different types of portals for different needs:
     \begin{itemize}
@@ -324,7 +328,7 @@ USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 
   \item Using portals is \textbf{safe}:
     \begin{itemize}
-    \item They don't expose sensible information from the host\vspacing
+    \item They don't expose sensitive information from the host\vspacing
     \item Portal-initiated operations are \textbf{interactive} an \textbf{cancellable}\vspacing
     \end{itemize}
 
@@ -337,7 +341,7 @@ USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 
 \end{frame}
 
-\subsection{An example of Portals}
+\subsection{Flatpak Portals: GTK+ backends}
 \begin{frame}[fragile]
   \frametitle{\insertsubsection}
 
