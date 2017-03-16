@@ -488,6 +488,21 @@ USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 \begin{frame}[fragile]
   \frametitle{\insertsubsection}
 
+  \textbf{Installing an application}: \texttt{gnome-recipes.flatpakref}
+  \begin{tiny}
+\begin{verbatim}
+[Flatpak Ref]
+Title=GNOME Recipes
+Name=org.gnome.Recipes
+Branch=master
+Url=https://matthiasclasen.github.io/recipes-releases/repo
+IsRuntime=False
+GPGKey=mQENBFis[...]Kpp5G2YW
+RuntimeRepo=https://sdk.gnome.org/gnome.flatpakrepo
+Comment=GNOME loves to cook
+\end{verbatim}
+  \end{tiny}
+
   \textbf{Configuring flatpak ``repositories''}: \texttt{gnome.flatpakrepo}
   \begin{tiny}
 \begin{verbatim}
@@ -501,21 +516,6 @@ platform libraries. At the moment they only receive minor bug fixing and securit
 but should be considered ABI stable and frozen.
 Icon=https://www.gnome.org/wp-content/themes/gnome-grass/images/gnome-logo.png
 GPGKey=mQENBFUU[...]15w8jmY=
-\end{verbatim}
-  \end{tiny}
-
-  \textbf{Installing an application}: \texttt{gnome-recipes.flatpakref}
-  \begin{tiny}
-\begin{verbatim}
-[Flatpak Ref]
-Title=GNOME Recipes
-Name=org.gnome.Recipes
-Branch=master
-Url=https://matthiasclasen.github.io/recipes-releases/repo
-IsRuntime=False
-GPGKey=mQENBFis[...]Kpp5G2YW
-RuntimeRepo=https://sdk.gnome.org/gnome.flatpakrepo
-Comment=GNOME loves to cook
 \end{verbatim}
   \end{tiny}
 
