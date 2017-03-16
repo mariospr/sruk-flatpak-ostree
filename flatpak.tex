@@ -17,7 +17,7 @@
     \item A new way of distributing applications in Linux\vspacing
     \item Sits on top of OSTree and \textit{bubblewrap} (chroot on steroids)\vspacing
     \item Cross-platform by design: \textbf{runtimes} and \textbf{applications}\vspacing
-    \item Reliable and secure: GPG signatures, sanboxing, portals...\vspacing
+    \item Reliable and secure: GPG signatures, sandboxing\vspacing
     \item Allows having both user and system-wide installations\vspacing
     \item Open Source project. Started by Red Hat, contributions from Endless, Collabora, Codethink, Intel, Kinvolk, Solus...
     \end{itemize}
@@ -42,7 +42,7 @@
     \item Creates a mount namespace with \texttt{/} on a \texttt{tmpfs}\vspacing
     \item Uses \texttt{PR\_SET\_NO\_NEW\_PRIVS} when cloning the process to limit what the binary can do after dropping privileges\vspacing
     \item Implements a subset of the Kernel's user namespaces feature to isolate processes\vspacing
-    \item More namespaces: \small{\texttt{CLONE\_NEWUSER}, \texttt{CLONE\_NEWIPC}, \texttt{CLONE\_NEWPID}, \texttt{CLONE\_NEWNET}, \texttt{CLONE\_NEWUTS}}\vspacing
+    \item Supported namespaces: \small{\texttt{CLONE\_NEWUSER}, \texttt{CLONE\_NEWIPC}, \texttt{CLONE\_NEWPID}, \texttt{CLONE\_NEWNET}, \texttt{CLONE\_NEWUTS}}\vspacing
     \item Allows passing a list of \textit{seccomp} filters to limit \textit{syscalls}\vspacing
     \end{itemize}
 
